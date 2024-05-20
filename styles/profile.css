@@ -44,7 +44,7 @@ h1 {
 #aboutdiv {
     min-height: 60vh;
     height: min-content;
-    position: relative; /* Add relative positioning to establish a reference for absolute positioning */
+    position: relative;
 }
 
 h1 {
