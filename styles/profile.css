@@ -7,11 +7,11 @@ body{
 #homediv {
     min-height: 60vh;
     height: min-content;
-    position: relative; /* Add relative positioning to establish a reference for absolute positioning */
+    position: relative;
 }
 
 h1 {
-    position: absolute; /* Position absolutely within the #aboutdiv container */
+    position: absolute;
     left: 2em;
     bottom: 0;
     top: 6.5em;
