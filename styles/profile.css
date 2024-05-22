@@ -7,11 +7,69 @@ body{
 #homediv {
     min-height: 60vh;
     height: min-content;
+<<<<<<< HEAD
+=======
+
+    position: relative; /* Add relative positioning to establish a reference for absolute positioning */
+}
+
+h1 {
+    position: absolute; /* Position absolutely within the #aboutdiv container */
+
+}
+
+h1 {
+    left: 2em;
+    bottom: 0;
+    margin-top: 0;
+    
+}
+
+#fed{
+    color: aliceblue;
+}
+
+#aboutsubdiv1,
+#aboutsubdiv2 {
+    min-height: 15em;
+    max-height: 15em;
+}
+
+#aboutsubdiv1 {
+    background-color: aqua;
+}
+
+#aboutsubdiv2 {
+    background-color: crimson;
+}
+
+#profile {
+    height: 16rem;
+    width: 15rem;
+    margin-left: 60%;
+    margin-top: -13%;
+} 
+
+#aboutdiv {
+    min-height: 60vh;
+    height: min-content;
+>>>>>>> a4e3fcf (ws)
     position: relative;
 }
 
 h1 {
+<<<<<<< HEAD
     position: absolute;
+=======
+
+    position: relative;
+}
+
+h1 {
+
+    position: absolute;
+
+>>>>>>> a4e3fcf (ws)
     left: 2em;
     bottom: 0;
     top: 6.5em;
