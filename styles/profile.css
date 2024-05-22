@@ -8,7 +8,10 @@ body{
     min-height: 60vh;
     height: min-content;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> a4e3fcf39ae61880e533a8496ccb857d059e4814
 
     position: relative; /* Add relative positioning to establish a reference for absolute positioning */
 }
@@ -53,11 +56,15 @@ h1 {
 #aboutdiv {
     min-height: 60vh;
     height: min-content;
+<<<<<<< HEAD
 >>>>>>> a4e3fcf (ws)
+=======
+>>>>>>> a4e3fcf39ae61880e533a8496ccb857d059e4814
     position: relative;
 }
 
 h1 {
+<<<<<<< HEAD
 <<<<<<< HEAD
     position: absolute;
 =======
@@ -70,6 +77,16 @@ h1 {
     position: absolute;
 
 >>>>>>> a4e3fcf (ws)
+=======
+
+    position: relative;
+}
+
+h1 {
+
+    position: absolute;
+
+>>>>>>> a4e3fcf39ae61880e533a8496ccb857d059e4814
     left: 2em;
     bottom: 0;
     top: 6.5em;
