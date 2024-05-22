@@ -4,9 +4,10 @@ body{
     margin: 0;
 }
 
-/* #aboutdiv {
+#homediv {
     min-height: 60vh;
     height: min-content;
+    position: relative;
 }
 
 h1 {
