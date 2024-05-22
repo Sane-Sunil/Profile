@@ -4,7 +4,44 @@ body{
     margin: 0;
 }
 
-#homediv {
+/* #aboutdiv {
+    min-height: 60vh;
+    height: min-content;
+}
+
+h1 {
+    left: 2em;
+    bottom: 0;
+    margin-top: 0;
+    
+}
+
+#fed{
+    color: aliceblue;
+}
+
+#aboutsubdiv1,
+#aboutsubdiv2 {
+    min-height: 15em;
+    max-height: 15em;
+}
+
+#aboutsubdiv1 {
+    background-color: aqua;
+}
+
+#aboutsubdiv2 {
+    background-color: crimson;
+}
+
+#profile {
+    height: 16rem;
+    width: 15rem;
+    margin-left: 60%;
+    margin-top: -13%;
+} */
+
+#aboutdiv {
     min-height: 60vh;
     height: min-content;
     position: relative;
