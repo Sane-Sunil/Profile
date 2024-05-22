@@ -7,6 +7,7 @@ body{
 /* #aboutdiv {
     min-height: 60vh;
     height: min-content;
+<<<<<<< HEAD
 }
 
 h1 {
@@ -48,6 +49,12 @@ h1 {
 }
 
 h1 {
+=======
+    position: relative;
+}
+
+h1 {
+>>>>>>> 7aa01927d6a12a3771279b524ae632312e47dadf
     position: absolute;
     left: 2em;
     bottom: 0;
