@@ -24,11 +24,23 @@ body{
     margin-right: 1rem;
 }
 
+.nav li:hover{
+    background-color: whitesmoke;
+}
+
+.nav li:active{
+    background-color: rgb(163, 163, 163)
+}
+
 .nav li a {
     display: block;
     color: white;
     text-decoration: none;
-    padding: 1rem 1rem;
+    padding: 1rem;
+}
+
+.nav li a:hover{
+    color: black;
 }
 
 #homediv {
