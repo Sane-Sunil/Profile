@@ -5,58 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sane Sunil</title>
     <link rel="stylesheet" href="styles/profile1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <div id="navdiv">
+    <nav id="navdiv">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <ul class="nav">
             <li><a href="#homediv">Home</a></li>
             <li><a href="#aboutdiv">About</a></li>
             <li><a href="#servicesdiv">Services</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#skills">Works With</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-    </div>
+    </nav>
 
-    <div id="homediv">
+    <section id="homediv">
         <div id="homesubdiv1">
             <h1>Hi, I'm Sane Sunil <br><span id="fed">Front-end Developer</span></h1>
         </div>
         <div id="homesubdiv2">
             <img src="images/hacker.jpeg" alt="My image" id="profile">
         </div>
-    </div>
+    </section>
 
-    <div id="aboutdiv">
+    <section id="aboutdiv">
         <div id="aboutsubdiv">
-            <h2 id="abouth"><u id="abouth_u">About Me</u></h2>
-            <div id="pmain">
-                <div id="psub">
-                    <p id="aboutp1">I'm a <br>&emsp;&emsp;
-                        des = ["Frontend developer",<br>&emsp;&emsp;&emsp;&emsp;&emsp;
-                            "Student", <br>&emsp;&emsp;&emsp;&emsp;&emsp;
-                            "Iot enthusiast", <br>&emsp;&emsp;&emsp;&emsp;&emsp;
-                            "Gamer", <br>&emsp;&emsp;&emsp;&emsp;&emsp;
-                            "Human", <br>&emsp;&emsp;&emsp;&emsp;&emsp;
-                            "Experimenter",  ~"and",<br>&emsp;&emsp;&emsp;&emsp;&emsp;
-                            "some other that others have to find out"]
-                    </p>
+            <div class="container">
+                <h2 id="abouth">About Me</h2>
+                <h3>I'm a</h3>
+                <div class="typewrite" data-period="2000" data-type='[ "Frontend developer", "Student", "Iot enthusiast", "Gamer", "Experimenter", "some other that others have to find out" ]'>
+                    <span class="wrap"></span>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="servicesdiv">
+    </section>
+
+    <section id="servicesdiv">
         <h2>Services</h2>
-        <ul>
-            <li><div class="servicessubdiv">Web Design</div></li>
-            <li><div class="servicessubdiv">Hosting</div></li>
-            <li><div class="servicessubdiv">UI Design</div></li>
-            <li><div class="servicessubdiv">Iot Projects</div></li>
-        </ul>
-    </div>
-    <div>df</div>
+        <div id="servicesitems">
+            <div class="servicessubdiv" id="card1">
+                <img src="images/site.png" alt="site ui">
+                <h3>Web Design</h3>
+                <span class="servicesline"></span>
+            </div>
+            <div class="servicessubdiv" id="card2">
+                <img src="images/hosting.png" alt="Server img">
+                <h3>Site Hosting</h3>
+                <span class="servicesline"></span>
+            </div>
+            <div class="servicessubdiv" id="card3">
+                <img src="images/ui.jpg" alt="ui image">
+                <h3>UI Design</h3>
+                <span class="servicesline"></span>
+            </div>
+            <div class="servicessubdiv" id="card4">
+                <img src="images/iot.png" alt="Iot img">
+                <h3>Iot Projects</h3>
+                <span class="servicesline"></span>
+            </div>
+        </div>
+    </section>
 
+    <section id="skills">
+        <div id="skills-container">
+            <h2>Works With</h2>
+            <h5>Web Dev</h5>
+            <div class="scroller" data-speed="slow2" data-direction="right">
+                <ul class="tag-list scroller__inner">
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JS</li>
+                    <li>PHP</li>
+                    <li>Express</li>
+                    <li>Node.js</li>
+                    <li>Apache</li>
+                    <li>Nginx</li>
+                </ul>
+            </div>
 
+            <h5>Design</h5>
+            <div class="scroller" data-speed="slow1" data-direction="left">
+                <ul class="tag-list scroller__inner">
+                    <li>Figma</li>
+                    <li>Adobe Photoshop</li>
+                    <li>Adobe XD</li>
+                    <li>GIMP</li>
+                </ul>
+            </div>
 
+            <h5>Other</h5>
+            <div class="scroller" data-speed="slow2" data-direction="right">
+                <ul class="tag-list scroller__inner">
+                    <li>Docker</li>
+                    <li>Linux</li>
+                    <li>MYSQL</li>
+                    <li>Git</li>
+                    <li>Arduino</li>
+                    <li>Python</li>
+                    <li>Github</li>
+                    <li>C</li>
+                    <li>C++</li>
+                    <li>Raspberry Pi</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div id="projects-container">
+            <h2>Projects</h2>
+            <div id="descriptions" class="project-cards"></div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <a href="mailto:sanesunil.falseofficial@gmail.com"><p><i class="fas fa-envelope"></i> sanesunil.falseofficial@gmail.com</p></a>
+                <a href="tel:+919995453521"><p><i class="fas fa-phone"></i> +91 9995453521</p></a>
+                <a href="https://www.google.com/maps/place/Changanassery"><p><i class="fas fa-map-marker-alt"></i> Changanassery, Kerala, India</p></a>
+                <div class="social-links">
+                    <a href="https://github.com/Sane-Sunil" target="_blank"><i class="fab fa-github"> github.com/Sane-Sunil</i></a>
+                    <p><center>404 Error</center><br><span id="no_other">No other social media accounts available</span></p>
+                </div>
+            </div>
+            <form id="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
 
     <script src="js/profile1.js"></script>
 </body>
