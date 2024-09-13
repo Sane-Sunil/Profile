@@ -152,20 +152,18 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Load environment variables
-    require('dotenv').config();
-
     const repoUrls = [
         'https://github.com/Sane-Sunil/Authentic-tech-master-2.O',
         'https://github.com/Sane-Sunil/public-rc-car',
         'https://github.com/Sane-Sunil/Skill_Nedu'       
     ];
 
-    const githubToken = process.env.GITHUB_TOKEN;
+    // Use a read-only token with minimal permissions
+    const githubToken = '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';
 
     async function fetchRepoDescriptions() {
         const descriptionElement = document.getElementById('descriptions');
-        descriptionElement.innerHTML = ''; // Clear previous descriptions
+        descriptionElement.innerHTML = '';
 
         const maxConcurrentRequests = 5;
         const queue = [];
@@ -247,10 +245,8 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log('Eye icons set up:', document.querySelectorAll('.eye-icon').length);
     }
 
-    // Fetch descriptions when the page loads
-    fetchRepoDescriptions().then(() => {
-        console.log('Descriptions fetched and displayed');
-    });
+    // Call the function when the page loads
+    document.addEventListener('DOMContentLoaded', fetchRepoDescriptions);
 
     function showIframe(event) {
         console.log('showIframe called');
