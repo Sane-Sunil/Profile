@@ -152,13 +152,16 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Load environment variables
+    require('dotenv').config();
+
     const repoUrls = [
         'https://github.com/Sane-Sunil/Authentic-tech-master-2.O',
         'https://github.com/Sane-Sunil/public-rc-car',
         'https://github.com/Sane-Sunil/Skill_Nedu'       
     ];
 
-    const personalAccessToken = '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'; // Replace with your actual token
+    const githubToken = process.env.GITHUB_TOKEN;
 
     async function fetchRepoDescriptions() {
         const descriptionElement = document.getElementById('descriptions');
@@ -180,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const fetchPromise = fetch(apiUrl, {
                 headers: {
-                    'Authorization': `token ${personalAccessToken}`,
+                    'Authorization': `token ${githubToken}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             })
