@@ -158,12 +158,11 @@ document.addEventListener("DOMContentLoaded", function() {
         'https://github.com/Sane-Sunil/Skill_Nedu'       
     ];
 
-    // Use a read-only token with minimal permissions
-    const githubToken = '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';
+    const personalAccessToken = ''; // Replace with your actual token
 
     async function fetchRepoDescriptions() {
         const descriptionElement = document.getElementById('descriptions');
-        descriptionElement.innerHTML = '';
+        descriptionElement.innerHTML = ''; // Clear previous descriptions
 
         const maxConcurrentRequests = 5;
         const queue = [];
@@ -181,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const fetchPromise = fetch(apiUrl, {
                 headers: {
-                    'Authorization': `token ${githubToken}`,
+                    'Authorization': `token ${personalAccessToken}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             })
@@ -245,8 +244,10 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log('Eye icons set up:', document.querySelectorAll('.eye-icon').length);
     }
 
-    // Call the function when the page loads
-    document.addEventListener('DOMContentLoaded', fetchRepoDescriptions);
+    // Fetch descriptions when the page loads
+    fetchRepoDescriptions().then(() => {
+        console.log('Descriptions fetched and displayed');
+    });
 
     function showIframe(event) {
         console.log('showIframe called');
