@@ -93,37 +93,78 @@ document.addEventListener("DOMContentLoaded", function() {
     `;
     document.head.appendChild(css);
 
-    function createFirefly() {
-        const container = document.querySelector('.container');
+    // Firefly effect
+    function createFirefly(container) {
         const firefly = document.createElement('div');
         firefly.classList.add('firefly');
 
-        // Random size and position within the container
-        const size = Math.random() * 1 + 5; // Firefly size between 5px and 15px
+        const size = Math.random() * 5 + 3; // Firefly size between 2px and 5px
         firefly.style.width = `${size}px`;
         firefly.style.height = `${size}px`;
-        firefly.style.top = `${Math.random() * 100}vh`;
-        firefly.style.left = `${Math.random() * 100}vw`;
 
-        // Random flicker animation duration
-        const flickerDuration = Math.random() * 1 + 1; // Between 1s and 2s
-        firefly.style.animationDuration = `${flickerDuration}s`;
+        // Set initial position
+        firefly.style.top = `${Math.random() * 100}%`;
+        firefly.style.left = `${Math.random() * 100}%`;
 
-        // Random movement
-        const movementDuration = Math.random() * 4 + 2; // Between 2s and 6s
-        firefly.style.animation = `move ${movementDuration}s linear infinite alternate, flicker ${flickerDuration}s infinite`;
-
-        // Append to container
         container.appendChild(firefly);
 
-        // Remove firefly after its animation ends + some extra time
-        setTimeout(() => {
-            firefly.remove();
-        }, (flickerDuration + movementDuration) * 2000); // Total duration in milliseconds
+        // Animate the firefly
+        animateFirefly(firefly, container);
+
+        // setTimeout(() => {
+        //     firefly.remove();
+        // }, 15000); // Remove after 15 seconds
     }
 
-    // Create multiple fireflies
-    setInterval(createFirefly, 300);
+    function animateFirefly(firefly, container) {
+        const containerRect = container.getBoundingClientRect();
+        const fireflyRect = firefly.getBoundingClientRect();
+
+        const maxX = containerRect.width - fireflyRect.width;
+        const maxY = containerRect.height - fireflyRect.height;
+
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+
+        const duration = Math.random() * 3000 + 2000; // Movement duration between 2-5 seconds
+
+        firefly.animate([
+            { transform: `translate(${firefly.offsetLeft}px, ${firefly.offsetTop}px)` },
+            { transform: `translate(${newX}px, ${newY}px)` }
+        ], {
+            duration: duration,
+            easing: 'ease-in-out',
+            fill: 'forwards'
+        });
+
+        firefly.style.left = `${newX}px`;
+        firefly.style.top = `${newY}px`;
+
+        // Schedule the next animation
+        setTimeout(() => animateFirefly(firefly, container), duration);
+    }
+
+    function addFirefliesToSection(sectionId, count) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.style.position = 'relative';
+            section.style.overflow = 'hidden';
+
+            for (let i = 0; i < count; i++) {
+                createFirefly(section);
+            }
+
+            // Create new fireflies periodically
+            setInterval(() => createFirefly(section), 2000);
+        }
+    }
+
+    // Add fireflies to specific sections
+    addFirefliesToSection('aboutdiv', 200);
+    addFirefliesToSection('servicesdiv', 150);
+    addFirefliesToSection('skills', 100);
+    addFirefliesToSection('projects', 150);
+    addFirefliesToSection('contact', 100);
 
     const scrollers = document.querySelectorAll(".scroller");
 
@@ -153,49 +194,49 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     const repoUrls = [
-        'https://github.com/Sane-Sunil/Authentic-tech-master-2.O',
+        'https://github.com/Sane-Sunil/Personal-weather-data',
         'https://github.com/Sane-Sunil/public-rc-car',
         'https://github.com/Sane-Sunil/Skill_Nedu'       
     ];
-
-    const personalAccessToken = ''; // Replace with your actual token
 
     async function fetchRepoDescriptions() {
         const descriptionElement = document.getElementById('descriptions');
         descriptionElement.innerHTML = ''; // Clear previous descriptions
 
-        const maxConcurrentRequests = 5;
-        const queue = [];
+        try {
+            // First, get the token from config.json
+            const configResponse = await fetch('/js/config.json');
+            const config = await configResponse.json();
+            const token = config.githubToken;
 
-        for (const url of repoUrls) {
-            const parts = url.split('/');
-            if (parts.length < 2) {
-                descriptionElement.innerHTML += `<div class="repo-description error">Invalid URL: ${url}</div>`;
-                continue;
-            }
-
-            const owner = parts[parts.length - 2];
-            const repo = parts[parts.length - 1];
-            const apiUrl = `https://api.github.com/repos/${owner}/${repo}`;
-
-            const fetchPromise = fetch(apiUrl, {
-                headers: {
-                    'Authorization': `token ${personalAccessToken}`,
-                    'Accept': 'application/vnd.github.v3+json'
-                }
-            })
-            .then(response => {
+            // Fetch data for each repository
+            const repositories = await Promise.all(repoUrls.map(async (url) => {
+                const parts = url.split('/');
+                const owner = parts[3];
+                const repo = parts[4];
+                const apiUrl = `https://api.github.com/repos/${owner}/${repo}`;
+                
+                const response = await fetch(apiUrl, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error(`GitHub API responded with ${response.status}`);
                 }
+                
                 return response.json();
-            })
-            .then(repoData => {
+            }));
+            
+            repositories.forEach(repoData => {
                 let description = repoData.description || 'No description available';
                 const words = description.split(' ');
                 if (words.length > 20) {
                     description = words.slice(0, 20).join(' ') + '...';
                 }
+                
                 const card = document.createElement('div');
                 card.className = 'repo-description';
                 card.style.opacity = '0';
@@ -215,33 +256,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     card.style.opacity = '1';
                     card.style.transform = 'translateY(0)';
                 }, 100);
-            })
-            .catch(error => {
-                const errorCard = document.createElement('div');
-                errorCard.className = 'repo-description error';
-                errorCard.innerHTML = `
-                    <h3>${owner}/${repo}</h3>
-                    <p>Error fetching data: ${error.message}</p>
-                `;
-                descriptionElement.appendChild(errorCard);
             });
-
-            queue.push(fetchPromise);
-
-            if (queue.length >= maxConcurrentRequests) {
-                await Promise.race(queue);
-                queue.splice(queue.indexOf(await Promise.race(queue)), 1);
-            }
+        } catch (error) {
+            console.error('Error fetching repository data:', error);
+            descriptionElement.innerHTML = `<div class="repo-description error">Error fetching repository data: ${error.message}</div>`;
         }
-
-        await Promise.all(queue);
 
         // Add event listeners to eye icons after all cards are created
         document.querySelectorAll('.eye-icon').forEach(icon => {
             icon.addEventListener('click', showIframe);
         });
-
-        console.log('Eye icons set up:', document.querySelectorAll('.eye-icon').length);
     }
 
     // Fetch descriptions when the page loads
